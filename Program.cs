@@ -8,33 +8,47 @@ namespace FactorialCalculator
         // Main Method
         static void Main(string[] args)
         {
-            //Taking input
+          try{
+            // Taking input
             Console.WriteLine("Enter the Non-Negative Number:");
-            //converting the input into int
+            // Converting the input into int
             int number = int.Parse(Console.ReadLine());
-            //calculating the factorial
+            // Calculating the factorial
             long factorial = CalculateFactorial(number);
-            //printing the output
+            // Printing the output
             Console.WriteLine($"The factorial of {number} is {factorial}");
+            }
+            catch (FormatException)
+            {
+                Console.WriteLine("Invalid input. Please enter a valid non-negative integer.");
+            }
+             catch (Exception ex)
+            {
+                Console.WriteLine($"An error occurred: {ex.Message}");
+            }
         }
 
-        static long CalculateFactorial(int n)
-        {
-            if (n < 0)
-            {
-                //neagtive condition
-                Console.WriteLine("The Number must be non-negative.");
-                return -1; // Return a value to indicate an error
+        static long CalculateFactorial(int n){
+            try{
+                if (n < 0){
+                    // Negative condition
+                    throw new ArgumentException("The Number must be non-negative.");
+                }
+                else if (n == 0)
+                {
+                    // Condition when n is zero
+                    return 1;
+                }
+                else
+                {
+                    // Using recursive function to find factorial
+                    return n * CalculateFactorial(n - 1);
+                }
             }
-            else if (n == 0)
+            catch (Exception ex)
             {
-                //condition when nis zero 
-                return 1;
-            }
-            else
-            {
-                //using recursive function to find factorial
-                return n * CalculateFactorial(n - 1);
+                Console.WriteLine($"An error occurred in CalculateFactorial: {ex.Message}");
+                throw; // Re-throw the exception to be handled by the calling method
             }
         }
     }
