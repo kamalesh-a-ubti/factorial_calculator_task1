@@ -4,33 +4,40 @@ namespace FactorialCalculator
 {
     class Program
     {
-
         // Main Method
         static void Main(string[] args)
         {
-          try{
-            // Taking input
-            Console.WriteLine("Enter the Non-Negative Number:");
-            // Converting the input into int
-            int number = int.Parse(Console.ReadLine());
-            // Calculating the factorial
-            long factorial = CalculateFactorial(number);
-            // Printing the output
-            Console.WriteLine($"The factorial of {number} is {factorial}");
-            }
-            catch (FormatException)
+            while (true)
             {
-                Console.WriteLine("Invalid input. Please enter a valid non-negative integer.");
-            }
-             catch (Exception ex)
-            {
-                Console.WriteLine($"An error occurred: {ex.Message}");
+                try
+                {
+                    // Taking input
+                    Console.WriteLine("Enter the Non-Negative Number:");
+                    // Converting the input into int
+                    int number = int.Parse(Console.ReadLine());
+                    // Calculating the factorial
+                    long factorial = CalculateFactorial(number);
+                    // Printing the output
+                    Console.WriteLine($"The factorial of {number} is {factorial}");
+                    break; // Exit the loop if input is valid
+                }
+                catch (FormatException)
+                {
+                    Console.WriteLine("Invalid input. Please enter a valid non-negative integer.");
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine($"An error occurred: {ex.Message}");
+                }
             }
         }
 
-        static long CalculateFactorial(int n){
-            try{
-                if (n < 0){
+        static long CalculateFactorial(int n)
+        {
+            try
+            {
+                if (n < 0)
+                {
                     // Negative condition
                     throw new ArgumentException("The Number must be non-negative.");
                 }
